@@ -1,5 +1,6 @@
 package com.todolist;
 
+import com.mongodb.util.JSON;
 import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.After;
@@ -36,17 +37,21 @@ public class TodoCtrlTest {
 
     @Test
     public void test() throws Exception {
-
-        MvcResult result = mockMvc.perform(get("/todo"))
+        String ecran = "{\"numero\":\"1\",\"titre\":\"a\",\"dateDeCréation\":1463567017282,\"desccription\":\"z\",\"dateDeCheance\":1463567017282,\"etat\":\"todo\"}";
+        //   MvcResult result = mockMvc.perform(get("/todo"))
+        this.mockMvc.perform(get("/todo"))
                 .andExpect(status().isOk())
-                // .andExpect(forwardedUrl("http://localhost:8080/todo"))
-                .andReturn();//.andExpect(content().json("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
+                .andExpect(content().string(ecran));
+        // .andExpect(forwardedUrl("http://localhost:8080/todo"))
+        //  .andReturn();//.andExpect(content().json("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
         // String output = "salu";
-       
-        String content = result.getResponse().getContentAsString();
-        JSONObject jObject  = new JSONObject(content);
-        String jsonText = jObject.toString();
-        Assert.assertTrue(jsonText.equals("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
+        // String ecran = "{\"numero\":\"1\",\"titre\":\"a\",\"dateDeCréation\":1463567017282,\"desccription\":\"z\",\"dateDeCheance\":1463567017282,\"etat\":\"todo\"}";
+        //String content = result.getResponse().getContentAsString();
+        //Object json = JSON.parse(content);
+        //JSONObject jObject  = new JSONObject(json);
+        //String jsonText = jObject.toString();
+        //  Assert.assertTrue(content.equals(jsonText));
+
     }
 
     @Test
