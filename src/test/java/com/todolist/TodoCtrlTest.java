@@ -37,20 +37,21 @@ public class TodoCtrlTest {
 
     @Test
     public void test() throws Exception {
-        String ecran = "{\"numero\":\"1\",\"titre\":\"a\",\"dateDeCréation\":1463567017282,\"desccription\":\"z\",\"dateDeCheance\":1463567017282,\"etat\":\"todo\"}";
-        //   MvcResult result = mockMvc.perform(get("/todo"))
-        this.mockMvc.perform(get("/todo"))
+        String ecran = "[{\"numero\":\"1\",\"titre\":\"a\",\"dateDeCréation\":1463567017282,\"desccription\":\"z\",\"dateDeCheance\":1463567017282,\"etat\":\"todo\"}]";
+        MvcResult result = mockMvc.perform(get("/todo"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(ecran));
-        // .andExpect(forwardedUrl("http://localhost:8080/todo"))
-        //  .andReturn();//.andExpect(content().json("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
+                //.andExpect(content().string(ecran));
+                // .andExpect(forwardedUrl("http://localhost:8080/todo"))
+                .andReturn();//.andExpect(content().json("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
         // String output = "salu";
         // String ecran = "{\"numero\":\"1\",\"titre\":\"a\",\"dateDeCréation\":1463567017282,\"desccription\":\"z\",\"dateDeCheance\":1463567017282,\"etat\":\"todo\"}";
-        //String content = result.getResponse().getContentAsString();
-        //Object json = JSON.parse(content);
-        //JSONObject jObject  = new JSONObject(json);
-        //String jsonText = jObject.toString();
-        //  Assert.assertTrue(content.equals(jsonText));
+        String content = result.getResponse().getContentAsString();
+        Object json = JSON.parse(content);
+        JSONObject jObject = new JSONObject(json);
+        //jObject.getJSONArray(ecran);
+        String jsonText = jObject.toString();
+        Assert.assertTrue(content.equals(ecran));
+       // Assert.assertEquals(jObject.getString("etat"), "todo");
 
     }
 
