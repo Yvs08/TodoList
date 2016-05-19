@@ -1,5 +1,6 @@
 package com.todolist;
 
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -32,19 +33,22 @@ public class TodoCtrlTest {
 
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
     }
-/**
+
     @Test
     public void test() throws Exception {
 
         MvcResult result = mockMvc.perform(get("/todo"))
                 .andExpect(status().isOk())
-               // .andExpect(forwardedUrl("http://localhost:8080/todo"))
+                // .andExpect(forwardedUrl("http://localhost:8080/todo"))
                 .andReturn();//.andExpect(content().json("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
-
+        // String output = "salu";
+       
         String content = result.getResponse().getContentAsString();
-        Assert.assertTrue(content.equals("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
+        JSONObject jObject  = new JSONObject(content);
+        String jsonText = jObject.toString();
+        Assert.assertTrue(jsonText.equals("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
     }
-**/
+
     @Test
     public void test1() throws Exception {
         this.mockMvc.perform(get("/voir"))
