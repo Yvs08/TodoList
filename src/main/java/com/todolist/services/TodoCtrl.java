@@ -1,9 +1,7 @@
 package com.todolist.services;
 
 import com.todolist.domain.Todo;
-import com.todolist.domain.Voiture;
 import com.todolist.repository.TodoRepository;
-import com.todolist.repository.VoitureRepository;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +23,6 @@ public class TodoCtrl {
 
     @Autowired
     private TodoRepository todoRepository;
-   
 
     @RequestMapping(value = "/addtodo", method = RequestMethod.GET)
     public Todo todo(@RequestParam(value = "titre") String titre,
@@ -41,8 +38,6 @@ public class TodoCtrl {
         return tod;
 
     }
-    
-     
 
     @RequestMapping(value = "/validate/{numero}", method = RequestMethod.GET)
     public Todo validate(@PathVariable("numero") String numero) throws RuntimeException {
@@ -75,18 +70,15 @@ public class TodoCtrl {
 
     }
 
-     @RequestMapping(value = "/voir", method = RequestMethod.GET)
+    @RequestMapping(value = "/voir", method = RequestMethod.GET)
     @ResponseBody
     public String voir() {
-        
-       String B = "Salut"; 
+
+        String B = "Salut";
         return B;
 
     }
-    
-    
-    
-    
+
     @RequestMapping(value = "/todo", method = RequestMethod.GET)
     @ResponseBody
     public List<Todo> toda() {

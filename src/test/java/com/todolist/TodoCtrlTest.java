@@ -1,7 +1,15 @@
 package com.todolist;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.util.JSON;
+import com.todolist.domain.Todo;
+import java.io.IOException;
+import org.mockito.Mock;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -14,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 import org.junit.Assert;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -35,24 +44,33 @@ public class TodoCtrlTest {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
     }
 
+    protected String mapToJson(Object obj) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(obj);
+
+    }
+
+    protected <T> T mapFromJson(String json, Class<T> clazz) throws JsonParseException, JsonMappingException, IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readValue(json, clazz);
+    }
+
     @Test
-    public void test() throws Exception {
-        String ecran = "[{\"numero\":\"1\",\"titre\":\"a\",\"dateDeCréation\":1463567017282,\"desccription\":\"z\",\"dateDeCheance\":1463567017282,\"etat\":\"todo\"}]";
+    public void checkedIfTheObjectsThatAreContainedInTheDatabaseCorrespondsToThoseOfUrl() throws Exception {
+
         MvcResult result = mockMvc.perform(get("/todo"))
                 .andExpect(status().isOk())
-                //.andExpect(content().string(ecran));
-                // .andExpect(forwardedUrl("http://localhost:8080/todo"))
-                .andReturn();//.andExpect(content().json("{'numero':'1','titre':'a','dateDeCréation':'1463567017282','desccription':'z','dateDeCheance':'1463567017282','etat':'todo'}"));
-        // String output = "salu";
-        // String ecran = "{\"numero\":\"1\",\"titre\":\"a\",\"dateDeCréation\":1463567017282,\"desccription\":\"z\",\"dateDeCheance\":1463567017282,\"etat\":\"todo\"}";
-        String content = result.getResponse().getContentAsString();
-        Object json = JSON.parse(content);
-        JSONObject jObject = new JSONObject(json);
-        //jObject.getJSONArray(ecran);
-        String jsonText = jObject.toString();
-        Assert.assertTrue(content.equals(ecran));
-       // Assert.assertEquals(jObject.getString("etat"), "todo");
+                .andReturn();
 
+        String content = result.getResponse().getContentAsString();
+
+        JSONArray array = new JSONArray(content);
+
+        for (int i = 0; i < array.length(); ++i) {
+            JSONObject obj = array.getJSONObject(i);
+
+            System.out.println(obj.getString("numero"));
+        }
     }
 
     @Test
@@ -60,6 +78,23 @@ public class TodoCtrlTest {
         this.mockMvc.perform(get("/voir"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Salut"));
+    }
+
+    @Test
+    public void checkedIfAllObjectsHaveValidatedAllEqualStatesHasDone() throws Exception {
+        String numero = "1";
+        String url = "/validate/";
+
+        MvcResult result = mockMvc.perform(get(url + numero))
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = result.getResponse().getContentAsString();
+        Todo todo = new Todo();
+        todo = mapFromJson(content, Todo.class);
+
+        Assert.assertNotNull(todo);
+        Assert.assertEquals("failure- expected todo.numero match", "done", todo.getEtat());
+
     }
 
     @After

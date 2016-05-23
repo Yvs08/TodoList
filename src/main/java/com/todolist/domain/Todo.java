@@ -1,5 +1,3 @@
-
- 
 package com.todolist.domain;
 
 import java.util.Date;
@@ -9,23 +7,22 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "Todo")
 public class Todo {
-    
-     @Id
+
+    @Id
     private String id;
-    private String numero; 
+    private String numero;
     private String titre;
-    
+
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date dateDeCréation;
-    
+
     private String desccription;
-    
+
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private Date dateDeCheance;
-    
+
     private String etat;
 
-   
     public Todo(String numero, String titre, String desccription, Date dateDeCréation, Date dateDeCheance, String etat) {
         this.numero = numero;
         this.titre = titre;
@@ -33,6 +30,10 @@ public class Todo {
         this.desccription = desccription;
         this.dateDeCheance = dateDeCheance;
         this.etat = etat;
+    }
+
+    public Todo() {
+       
     }
 
     public String getNumero() {
@@ -81,5 +82,13 @@ public class Todo {
 
     public void setEtat(String etat) {
         this.etat = etat;
-    } 
+    }
+
+    @Override
+    public String toString() {
+        return "Todo{" + "id=" + id + ", numero=" + numero + ", titre=" + titre + ", dateDeCr\u00e9ation=" + dateDeCréation + ", desccription=" + desccription + ", dateDeCheance=" + dateDeCheance + ", etat=" + etat + '}';
+    }
+    
+    
+    
 }

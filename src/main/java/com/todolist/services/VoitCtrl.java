@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.todolist.services;
 
 import com.todolist.domain.Voiture;
@@ -15,15 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class VoitCtrl {
-       @Autowired
-      private VoitureRepository voitureRepository ; 
-       
-        @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public Voiture voiture(@RequestParam(value = "titre") String titre) {
-        
-        Voiture bmw = new Voiture(titre);
 
-      //  Voiture x = voitureRepository.save(bmw);
+    @Autowired
+    private VoitureRepository voitureRepository;
+
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    public Voiture voiture(@RequestParam(value = "numero") String numero) {
+
+        Voiture bmw = new Voiture(numero);
+
+        Voiture x = voitureRepository.save(bmw);
         return bmw;
 
     }

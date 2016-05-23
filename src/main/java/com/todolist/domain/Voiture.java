@@ -1,17 +1,14 @@
-
 package com.todolist.domain;
 
-import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Document(collection = "Car")
-
 public class Voiture {
+
     @Id
     private String id;
-    private String numero; 
+    private String numero;
 
     public Voiture(String numero) {
         this.numero = numero;
@@ -25,6 +22,4 @@ public class Voiture {
         this.numero = numero;
     }
 
-      
-    
 }

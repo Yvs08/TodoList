@@ -5,15 +5,13 @@
  */
 package com.todolist.repository;
 
-import com.todolist.domain.Todo;
 import com.todolist.domain.Voiture;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface VoitureRepository extends MongoRepository<Todo, String> {
-
-    public Voiture findByNumero(String numero);
-
+public interface VoitureRepository extends MongoRepository<Voiture, String> {
+    
+    public List<Voiture> findByNumero(String numero);
     
 
 }
