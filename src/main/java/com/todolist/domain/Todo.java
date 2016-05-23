@@ -36,6 +36,12 @@ public class Todo {
        
     }
 
+    public Todo(String numero, String titre, String desccription) {
+         this.numero = numero;
+         this.titre = titre;
+         this.desccription = desccription;
+    }
+
     public String getNumero() {
         return numero;
     }

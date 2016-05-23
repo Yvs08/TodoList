@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.util.JSON;
 import com.todolist.domain.Todo;
+import com.todolist.repository.TodoRepository;
 import java.io.IOException;
+import java.util.Date;
 import org.mockito.Mock;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -21,6 +23,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 import org.junit.Assert;
+import static org.mockito.Mockito.verify;
+import static org.mockito.MockitoAnnotations.initMocks;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -33,16 +37,23 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 public class TodoCtrlTest {
 
     private MockMvc mockMvc;
+    private Todo todo1; 
+       
+   
 
     @Autowired
     private WebApplicationContext context;
 
-    // private TodoRepository  todoServiceMock;
+    @Mock
+    private TodoRepository todoRepository;
+     
     @Before
     public void setUp() {
-
+        initMocks(this);
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.context).build();
+        todo1 = new Todo("3","Title","descripte"); 
     }
+   
 
     protected String mapToJson(Object obj) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
@@ -53,6 +64,12 @@ public class TodoCtrlTest {
     protected <T> T mapFromJson(String json, Class<T> clazz) throws JsonParseException, JsonMappingException, IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(json, clazz);
+    }
+    
+     @Test
+    public void shouldBeAbleToSaveAList(){
+        todoRepository.save(todo1);
+        verify(todoRepository).save(todo1);
     }
 
     @Test
@@ -89,6 +106,8 @@ public class TodoCtrlTest {
                 .andExpect(status().isOk())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
+        
+        @SuppressWarnings("UnusedAssignment")
         Todo todo = new Todo();
         todo = mapFromJson(content, Todo.class);
 
