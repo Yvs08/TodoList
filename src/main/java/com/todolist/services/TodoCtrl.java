@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,10 +35,24 @@ public class TodoCtrl {
 
         Todo tod = new Todo(numero, titre, description, dateDeCreation, dateEcheance, etat);
 
-        Todo result = todoRepository.save(tod);
+        todoRepository.save(tod);
         return tod;
 
     }
+    
+     @RequestMapping(value = "/addtodoa", method = RequestMethod.POST)
+    public void todo(@RequestBody Todo t) {
+        
+         todoRepository.save(t);
+        
+    }
+      @RequestMapping(value = "/deletevialeformu", method = RequestMethod.POST)
+    public void todo(@RequestBody String a) {
+        
+         todoRepository.deleteByNumero(a);
+        
+    }
+
 
     @RequestMapping(value = "/validate/{numero}", method = RequestMethod.GET)
     public Todo validate(@PathVariable("numero") String numero) throws RuntimeException {

@@ -13,20 +13,20 @@ public class Todo {
     private String numero;
     private String titre;
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
-    private Date dateDeCréation;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date dateDeCreation;
 
     private String desccription;
 
-    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date dateDeCheance;
 
     private String etat;
 
-    public Todo(String numero, String titre, String desccription, Date dateDeCréation, Date dateDeCheance, String etat) {
+    public Todo(String numero, String titre, String desccription, Date dateDeCreation, Date dateDeCheance, String etat) {
         this.numero = numero;
         this.titre = titre;
-        this.dateDeCréation = dateDeCréation;
+        this.dateDeCreation = dateDeCreation;
         this.desccription = desccription;
         this.dateDeCheance = dateDeCheance;
         this.etat = etat;
@@ -59,11 +59,11 @@ public class Todo {
     }
 
     public Date getDateDeCréation() {
-        return dateDeCréation;
+        return dateDeCreation;
     }
 
     public void setDateDeCréation(Date dateDeCréation) {
-        this.dateDeCréation = dateDeCréation;
+        this.dateDeCreation = dateDeCréation;
     }
 
     public String getDesccription() {
@@ -92,7 +92,7 @@ public class Todo {
 
     @Override
     public String toString() {
-        return "Todo{" + "id=" + id + ", numero=" + numero + ", titre=" + titre + ", dateDeCr\u00e9ation=" + dateDeCréation + ", desccription=" + desccription + ", dateDeCheance=" + dateDeCheance + ", etat=" + etat + '}';
+        return "Todo{" + "id=" + id + ", numero=" + numero + ", titre=" + titre + ", dateDeCreation=" + dateDeCreation + ", desccription=" + desccription + ", dateDeCheance=" + dateDeCheance + ", etat=" + etat + '}';
     }
     
     
