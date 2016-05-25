@@ -8,47 +8,56 @@
         <script src= "/script/js/mainApp.js"></script>
         <script src= "/script/js/app/controllers/Data.js"></script>
         <link rel="stylesheet" href="style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
        
         <script type="text/javascript">
    
 </script>
     </head>
     <body>
-          <header>
-            <h1>Todo List(Delete)</h1>
-               <nav>
-                    <ul>
-                        <li><a href="http://localhost:8080/delete.html">Validate Todo</a></li>
-                        <li><a href="http://localhost:8080/delete.html">Delete Todo</a></li>
-                        <li><a href="http://localhost:8080/searchTodo.html">Search Todo</a></li>
-                        <li><a href="http://localhost:8080/">Add Todo</a></li>
-                    </ul>
-                </nav>
-          </header>
-               
-        <div ng-app = "mainApp" ng-controller = "dataController" id="formulaire">
+          <div class="for"> <h2>Todo List Delete </h2> </div>
         
-            <form name="yves"   ng-submit="submitForms()">
-                <p>
-                    NUMERO :<br />
-                    <input type="text"  required  name="numero" style="width: 400px; height: 20px;" ng-model="plop.number"/>
-                </p>
-                
+        <div class="for">
+            <a href="http://localhost:8080/validate.html"><button class="pure-button success"> Validate Todo</button> </a>
+            <a href="http://localhost:8080/searchTodo.html"><button class="pure-button warning">Search Todo</button></a>
+            <a href="http://localhost:8080/sortTodo.html"><button class="pure-button warning">Sort Todo</button></a>
+            <a href="http://localhost:8080/listTodo.html"><button class="pure-button warning"> Todo list</button></a>
+            <a href="http://localhost:8080"><button class="pure-button secondary">Add Todo</button></a>
+        
+        </div>
+               
+        <div ng-app = "mainApp" ng-controller = "dataController" class="for">
+        
+
+        <form class="pure-form pure-form-aligned"  ng-submit="submitForms()" >
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="number">Number</label>
+                    <input id="number"   required  type="text" placeholder="Number" ng-model="plop.number">
+                </div>
                
 
 
-                <p>
-                    <input type="submit" value="Envoyer"  /> 
-                </p>
+              <div class="pure-controls">
+                    <label for="cb" class="pure-checkbox">
+                        <input id="cb" type="checkbox"> I've read the terms and conditions
+                    </label>
 
+                    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+                </div>
+        </fieldset>
             </form>
         </div>
+          <div>
         <footer>    
-            <div id="tweet">
+                
                     
                     <p>@PaloIT !</p>
                     <p>le 24 mai à 23h12</p>
-                </div>
+              
         </footer>
+          </div>
+    </body>
         
 </Html>

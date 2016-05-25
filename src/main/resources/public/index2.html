@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+    </head>
+    <body>
+       
+
+        <div class="for"> <h2>Todo List</h2> </div>
+        
+        <div class="for">
+            <a href="http://localhost:8080/validate.html"><button class="pure-button success"> Validate Todo</button> </a>
+            <a href="http://localhost:8080/delete.html"><button class="pure-button error">Delete Todo</button> </a>
+            <a href="http://localhost:8080/searchTodo.html"><button class="pure-button warning">Search Todo</button></a>
+            <a href="http://localhost:8080/sortTodo.html"><button class="pure-button warning">Sort Todo</button></a>
+            <a href="http://localhost:8080/listTodo.html"><button class="pure-button warning"> Todo list</button></a>
+            <a href="http://localhost:8080/index2.html"><button class="pure-button secondary">Add Todo</button></a>
+        
+        </div>
+        
+        <div  class="for"  ng-app = "mainApp" ng-controller = "dataController" >
+
+        <form class="pure-form pure-form-aligned"  ng-submit="submitForm()">
+            <fieldset>
+                <div class="pure-control-group">
+                    <label for="number">Number</label>
+                    <input id="number" required type="text" placeholder="Number"  ng-model="plop.number">
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" required placeholder="Title"   ng-model = "plop.title" >
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="DeadlineDate">Deadline Date</label>
+                    <input id="DeadlineDate" type="text" required placeholder="DeadlineDate" ng-model="plop.dateDeadline" >
+                </div>
+                <div class="pure-control-group">
+                    <label for="Description">Description</label>
+                    <input id="Description" type="text" required placeholder="Description"  ng-model="plop.description">
+                </div>
+                <div class="pure-control-group">
+                    <label for="startDate">Start Date</label>
+                    <input id="startDate" type="text" required placeholder="startDate" ng-model="plop.startDate">
+                </div>
+                <div class="pure-control-group">
+                    <label for="state">State</label>
+                    <input id="state" type="text" required placeholder="state" ng-model="plop.state" >
+                </div>
+                
+
+                <div class="pure-controls">
+                    <label for="cb" class="pure-checkbox">
+                        <input id="cb" type="checkbox"> I've read the terms and conditions
+                    </label>
+
+                    <button type="submit"  class="pure-button pure-button-primary">Submit</button>
+                </div>
+            </fieldset>
+        </form>
+        </div>
+        
+        <div> 
+            <footer>
+               
+               <p>@PaloIT !</p>
+               <p>le 24 mai à 23h12</p>
+                
+            </footer>
+        </div>
+    </body>
+</html>
