@@ -4,7 +4,7 @@ mainApp.controller('dataController', function ($scope, $http) {
     $scope.plop = {};
 
     $scope.plop = {
-        etat: 'done'
+        state: 'done'
 
     };
 
@@ -12,7 +12,7 @@ mainApp.controller('dataController', function ($scope, $http) {
         console.log("posting data....");
         formData = $scope.plop;
         console.log(formData);
-        var addUrl = 'http://localhost:8080/addtodoa';
+        var addUrl = 'http://localhost:8080/addtodobyforms';
         $http.post(addUrl, formData)
                 .success(function ( ) {
 
@@ -24,7 +24,7 @@ mainApp.controller('dataController', function ($scope, $http) {
         console.log("posting data....");
         formData = $scope.plop;
         console.log(formData);
-        var addUrl = 'http://localhost:8080/deletevialeformu';
+        var addUrl = 'http://localhost:8080/deletetodobyforms';
         $http.post(addUrl, formData)
                 .success(function ( ) {
 

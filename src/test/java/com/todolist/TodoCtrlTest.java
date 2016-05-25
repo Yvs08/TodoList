@@ -82,7 +82,7 @@ public class TodoCtrlTest {
         for (int i = 0; i < array.length(); ++i) {
             JSONObject obj = array.getJSONObject(i);
 
-            System.out.println(obj.getString("numero"));
+            System.out.println(obj.getString("number"));
         }
     }
 
@@ -95,10 +95,10 @@ public class TodoCtrlTest {
 
     @Test
     public void checkedIfAllObjectsHaveValidatedAllEqualStatesHasDone() throws Exception {
-        String numero = "1";
+        String number = "1";
         String url = "/validate/";
 
-        MvcResult result = mockMvc.perform(get(url + numero))
+        MvcResult result = mockMvc.perform(get(url + number))
                 .andExpect(status().isOk())
                 .andReturn();
         String content = result.getResponse().getContentAsString();
@@ -108,7 +108,7 @@ public class TodoCtrlTest {
         todo = mapFromJson(content, Todo.class);
 
         Assert.assertNotNull(todo);
-        Assert.assertEquals("failure- expected todo.numero match", "done", todo.getEtat());
+        Assert.assertEquals("failure- expected todo.numero match", "done", todo.getState());
 
     }
 

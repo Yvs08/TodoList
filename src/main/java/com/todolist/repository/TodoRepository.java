@@ -7,10 +7,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface TodoRepository extends MongoRepository<Todo, String> {
 
-    public List<Todo> findByTitre(String titre);
+    public List<Todo> findByTitle(String title);
     
-    public Todo findByNumero(String numero);
+    public Todo findByNumber(String number);
     
-    public Todo deleteByNumero(String numero);
+    public Todo deleteByNumber(String number);
 
 }

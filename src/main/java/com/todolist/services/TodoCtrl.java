@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,89 +25,91 @@ public class TodoCtrl {
     private TodoRepository todoRepository;
 
     @RequestMapping(value = "/addtodo", method = RequestMethod.GET)
-    public Todo todo(@RequestParam(value = "titre") String titre,
+    public Todo addTodoByUrl(@RequestParam(value = "title") String title,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "numero") String numero) {
-        Date dateDeCreation = new Date();
-        Date dateEcheance = new Date();
-        String etat = "todo";
+            @RequestParam(value = "number") String number) {
+        Date startDate = new Date();
+        Date dateDeadline = new Date();
+        String state = "todo";
 
-        Todo tod = new Todo(numero, titre, description, dateDeCreation, dateEcheance, etat);
+        Todo tod = new Todo(number, title, description, startDate, dateDeadline, state);
 
         todoRepository.save(tod);
         return tod;
 
     }
-    
-     @RequestMapping(value = "/addtodoa", method = RequestMethod.POST)
-    public void todo(@RequestBody Todo t) {
-        
-         todoRepository.save(t);
-        
-    }
-      @RequestMapping(value = "/deletevialeformu", method = RequestMethod.POST)
-    public void todo(@RequestBody String a) {
-        
-         todoRepository.deleteByNumero(a);
-        
+
+    @RequestMapping(value = "/addtodobyforms", method = RequestMethod.POST)
+    public void addTodoByForms(@RequestBody Todo t) {
+
+        todoRepository.save(t);
+
     }
 
+    @RequestMapping(value = "/deletetodobyforms", method = RequestMethod.POST)
+    public void deleteTodoByForms(@RequestBody Todo todo) {
 
-    @RequestMapping(value = "/validate/{numero}", method = RequestMethod.GET)
-    public Todo validate(@PathVariable("numero") String numero) throws RuntimeException {
+        String number = todo.getNumber();
+
+        todoRepository.deleteByNumber(number);
+
+    }
+
+    @RequestMapping(value = "/validate/{number}", method = RequestMethod.GET)
+    public Todo validateTodoByUrl(@PathVariable("number") String number) throws RuntimeException {
 
         Function<Todo, Todo> plop = t -> {
-            String avant = t.getEtat();
-            String etat = "done";
-            String faire = "todo";
-            if (faire.equals(avant)) {
-                t.setEtat(etat);
+            String a = t.getState();
+            String state = "done";
+            String d = "todo";
+            if (d.equals(a)) {
+                t.setState(state);
                 return todoRepository.save(t);
             }
             return t;
         };
 
-        Supplier<String> foo = () -> "meh";
         final BiFunction<Integer, Integer, String> bazbar = (a, b) -> a.toString() + b.toString();
         System.out.println(bazbar.apply(123, 456));
         final BiFunction<String, Integer, Integer> remapper = (k, v) -> v == null ? 42 : v + 41;
-        return Optional.ofNullable(todoRepository.findByNumero(numero))
-                .map(plop).orElseThrow(() -> new RuntimeException("pas de todo avec ce numero"));
+        return Optional.ofNullable(todoRepository.findByNumber(number))
+                .map(plop)
+                .orElseThrow(() -> new RuntimeException("pas de todo avec ce numero"));
 
     }
 
     @RequestMapping(value = "/validateList/", method = RequestMethod.GET)
     @ResponseBody
-    public List<Todo> validateList(@RequestParam List<String> todo) {
+    public List<Todo> validateListByUrl(@RequestParam List<String> todo) {
 
-        return todo.stream().map(this::validate).collect(Collectors.toList());
+        return todo.stream().map(this::validateTodoByUrl).collect(Collectors.toList());
 
     }
 
-    @RequestMapping(value = "/voir", method = RequestMethod.GET)
+    @RequestMapping(value = "/see", method = RequestMethod.GET)
     @ResponseBody
-    public String voir() {
+    public String see() {
 
-        String B = "Salut";
+        String B = "Hello";
         return B;
 
     }
 
     @RequestMapping(value = "/todo", method = RequestMethod.GET)
     @ResponseBody
-    public List<Todo> toda() {
+    public List<Todo> listAllTodo() {
 
         return todoRepository.findAll();
 
     }
 
-    @RequestMapping(value = "/delete/{numero}", method = RequestMethod.GET)
-    public List<Todo> getodo(@PathVariable("numero") String numero) {
+    @RequestMapping(value = "/delete/{number}", method = RequestMethod.GET)
+    public List<Todo> deleteTodoByUrl(@PathVariable("number") String number) {
 
-        Todo get = todoRepository.findByNumero(numero);
-        String avant = get.getEtat();
+        Todo get = todoRepository.findByNumber(number);
+        String avant = get.getState();
         if ("done".equals(avant)) {
-            todoRepository.deleteByNumero(numero);
+            todoRepository.deleteByNumber(number);
             return todoRepository.findAll();
         } else {
             return todoRepository.findAll();
@@ -116,14 +117,14 @@ public class TodoCtrl {
 
     }
 
-    @RequestMapping(value = "/lister/{etat}", method = RequestMethod.GET)
-    public List<Todo> todo(@PathVariable("etat") Optional<String> etat) {
-        return etat
+    @RequestMapping(value = "/lister/{state}", method = RequestMethod.GET)
+    public List<Todo> todoListsByState(@PathVariable("state") Optional<String> state) {
+        return state
                 .map(e -> {
                     return todoRepository
                             .findAll()
                             .stream()
-                            .filter(d -> d.getEtat().equals(e))
+                            .filter(d -> d.getState().equals(e))
                             .collect(Collectors.toList());
                 })
                 .orElseGet(() -> {
@@ -133,15 +134,15 @@ public class TodoCtrl {
 
     }
 
-    @RequestMapping(value = "/filtrer/{dateDeCheance}", method = RequestMethod.GET)
-    public List<Todo> gtodo(@PathVariable("dateDeCheance") @DateTimeFormat(pattern = "dd.MM.yyyy") Optional<Date> dateDeCheance) {
+    @RequestMapping(value = "/filtrer/{dateDeadline}", method = RequestMethod.GET)
+    public List<Todo> todoListsByDateDeadline(@PathVariable("dateDeadline") @DateTimeFormat(pattern = "dd.MM.yyyy") Optional<Date> dateDeadline) {
 
-        return dateDeCheance
+        return dateDeadline
                 .map(e -> {
                     return todoRepository
                             .findAll()
                             .stream()
-                            .filter(d -> d.getDateDeCheance().compareTo(e) > 0)
+                            .filter(d -> d.getDateDeadline().compareTo(e) > 0)
                             .collect(Collectors.toList());
                 })
                 .orElseGet(() -> {

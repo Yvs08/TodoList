@@ -10,89 +10,89 @@ public class Todo {
 
     @Id
     private String id;
-    private String numero;
-    private String titre;
+    private String number;
+    private String title;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date dateDeCreation;
+    private Date startDate;
 
-    private String desccription;
+    private String description;
 
     @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date dateDeCheance;
+    private Date dateDeadline;
 
-    private String etat;
+    private String state;
 
-    public Todo(String numero, String titre, String desccription, Date dateDeCreation, Date dateDeCheance, String etat) {
-        this.numero = numero;
-        this.titre = titre;
-        this.dateDeCreation = dateDeCreation;
-        this.desccription = desccription;
-        this.dateDeCheance = dateDeCheance;
-        this.etat = etat;
+    public Todo(String number, String title, String description, Date startDate, Date dateDeadline, String state) {
+        this.number = number;
+        this.title = title;
+        this.description = description;
+        this.startDate = startDate;
+        this.dateDeadline = dateDeadline;
+        this.state = state;
     }
 
     public Todo() {
        
     }
 
-    public Todo(String numero, String titre, String desccription) {
-         this.numero = numero;
-         this.titre = titre;
-         this.desccription = desccription;
+    public Todo(String number, String title, String description) {
+         this.number = number;
+         this.title = title;
+         this.description = description;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getNumber() {
+        return number;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getTitre() {
-        return titre;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitre(String titre) {
-        this.titre = titre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Date getDateDeCréation() {
-        return dateDeCreation;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setDateDeCréation(Date dateDeCréation) {
-        this.dateDeCreation = dateDeCréation;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public String getDesccription() {
-        return desccription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesccription(String desccription) {
-        this.desccription = desccription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Date getDateDeCheance() {
-        return dateDeCheance;
+    public Date getDateDeadline() {
+        return dateDeadline;
     }
 
-    public void setDateDeCheance(Date dateDeCheance) {
-        this.dateDeCheance = dateDeCheance;
+    public void setDateDeadline(Date dateDeadline) {
+        this.dateDeadline = dateDeadline;
     }
 
-    public String getEtat() {
-        return etat;
+    public String getState() {
+        return state;
     }
 
-    public void setEtat(String etat) {
-        this.etat = etat;
+    public void setState(String state) {
+        this.state = state;
     }
 
     @Override
     public String toString() {
-        return "Todo{" + "id=" + id + ", numero=" + numero + ", titre=" + titre + ", dateDeCreation=" + dateDeCreation + ", desccription=" + desccription + ", dateDeCheance=" + dateDeCheance + ", etat=" + etat + '}';
+        return "Todo{" + "id=" + id + ", number=" + number + ", title=" + title + ", startDate=" + startDate + ", description=" + description + ", dateDeadline=" + dateDeadline + ", state=" + state + '}';
     }
     
     
