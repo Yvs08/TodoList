@@ -10,6 +10,7 @@ public interface TodoRepository extends MongoRepository<Todo, String> {
     public List<Todo> findByTitle(String title);
     
     public Todo findByNumber(String number);
+    public Todo findByState(String state);
     
     public Todo deleteByNumber(String number);
 

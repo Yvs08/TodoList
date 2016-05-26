@@ -28,8 +28,8 @@ public class TodoCtrl {
     public Todo addTodoByUrl(@RequestParam(value = "title") String title,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "number") String number) {
-        Date startDate = new Date();
-        Date dateDeadline = new Date();
+        String startDate = "13-08-2016";
+        String dateDeadline = "13-08-2016";
         String state = "todo";
 
         Todo tod = new Todo(number, title, description, startDate, dateDeadline, state);
@@ -52,6 +52,56 @@ public class TodoCtrl {
         String number = todo.getNumber();
 
         todoRepository.deleteByNumber(number);
+
+    }
+
+    @RequestMapping(value = "/validatetodobyforms", method = RequestMethod.POST)
+    public Todo validateTodoByForms(@RequestBody Todo todo) {
+
+        String number = todo.getNumber();
+
+        Function<Todo, Todo> plop = t -> {
+            String a = t.getState();
+            String state = "done";
+            String d = "todo";
+            if (d.equals(a)) {
+                t.setState(state);
+                return todoRepository.save(t);
+            }
+            return t;
+        };
+        return Optional.ofNullable(todoRepository.findByNumber(number))
+                .map(plop)
+                .orElseThrow(() -> new RuntimeException("pas de todo avec ce numero"));
+
+    }
+
+    @RequestMapping(value = "/searchtodobyforms", method = RequestMethod.POST)
+    public Todo searchTodoByForms(@RequestBody Todo todo) {
+
+        String number = todo.getNumber();
+
+        return todoRepository.findByNumber(number);
+
+    }
+
+    @RequestMapping(value = "/sorttodobyforms", method = RequestMethod.POST)
+    public List<Todo> sortTodoByForms(@RequestBody Todo todo) {
+
+        String state = todo.getState();
+
+        return Optional.ofNullable(todoRepository.findByState(state))
+                .map(e -> {
+                    return todoRepository
+                            .findAll()
+                            .stream()
+                            .filter(d -> d.getState().equals(e))
+                            .collect(Collectors.toList());
+                })
+                .orElseGet(() -> {
+                    return todoRepository.findAll();
+
+                });
 
     }
 
@@ -135,7 +185,7 @@ public class TodoCtrl {
     }
 
     @RequestMapping(value = "/filtrer/{dateDeadline}", method = RequestMethod.GET)
-    public List<Todo> todoListsByDateDeadline(@PathVariable("dateDeadline") @DateTimeFormat(pattern = "dd.MM.yyyy") Optional<Date> dateDeadline) {
+    public List<Todo> todoListsByDateDeadline(@PathVariable("dateDeadline") @DateTimeFormat(pattern = "dd.MM.yyyy") Optional<String> dateDeadline) {
 
         return dateDeadline
                 .map(e -> {

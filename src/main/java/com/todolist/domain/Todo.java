@@ -13,17 +13,17 @@ public class Todo {
     private String number;
     private String title;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date startDate;
+    
+    private String startDate;
 
     private String description;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date dateDeadline;
+   
+    private String dateDeadline;
 
     private String state;
 
-    public Todo(String number, String title, String description, Date startDate, Date dateDeadline, String state) {
+    public Todo(String number, String title, String description, String startDate, String dateDeadline, String state) {
         this.number = number;
         this.title = title;
         this.description = description;
@@ -58,11 +58,11 @@ public class Todo {
         this.title = title;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
@@ -74,11 +74,11 @@ public class Todo {
         this.description = description;
     }
 
-    public Date getDateDeadline() {
+    public String getDateDeadline() {
         return dateDeadline;
     }
 
-    public void setDateDeadline(Date dateDeadline) {
+    public void setDateDeadline(String dateDeadline) {
         this.dateDeadline = dateDeadline;
     }
 
