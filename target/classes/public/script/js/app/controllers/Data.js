@@ -5,7 +5,7 @@
 mainApp.controller('dataController', function ($scope, $http) {
     $scope.plop = {};
 
-    $scope.plop = {
+    $scope.plop = { 
         state: 'todo'
 
     };
@@ -17,7 +17,7 @@ mainApp.controller('dataController', function ($scope, $http) {
         var addUrl = 'http://localhost:8080/addtodobyforms';
         $http.post(addUrl, formData)
                 .success(function ( ) {
-
+  
                 });
     };
 

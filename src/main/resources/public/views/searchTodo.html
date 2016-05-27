@@ -1,32 +1,4 @@
-<!doctype html> 
-<html>
-    <head>
-        <title>AngularJS First Application</title>
-        <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-        <script src = "/script/js/angular-cookies.js"></script>
-        <script src= "/script/js/angular-route.js"></script> 
-        <script src= "/script/js/mainApp.js"></script>
-        <script src= "/script/js/app/controllers/Data.js"></script>
-        <link rel="stylesheet" href="style.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
-        <script type="text/javascript">
-
-        </script>
-    </head>
-    <body>
-        <div class="for"> <h2>Todo List Search </h2> </div>
-
-        <div class="for">
-            <a href="http://localhost:8080/delete.html"><button class="pure-button error">Delete Todo</button> </a>
-            <a href="http://localhost:8080/sortTodo.html"><button class="pure-button warning">Sort Todo</button></a>
-            <a href="http://localhost:8080/listTodo.html"><button class="pure-button warning"> Todo list</button></a>
-            <a href="http://localhost:8080/index2.html"><button class="pure-button secondary">Add Todo</button></a>
-
-        </div>
-
-        <div ng-app = "mainApp" ng-controller = "dataController" class="for">
+       <div ng-app = "routeAppControllers" ng-controller = "contactad" class="for">
 
             <form class="pure-form pure-form-aligned"  ng-submit="submitFormular1()" > 
 
@@ -59,28 +31,17 @@
 
                     </tr>
 
-                    <tr ng-repeat = "plop in plopes">
-                        <td>{{ plop.number}}</td>
-                        <td>{{ plop.title}}</td>
-                        <td>{{plop.dateDeadline}}</td>
-                        <td>{{plop.description}}</td>
-                        <td>{{plop.startDate}}</td>
-                        <td>{{ plop.state}}</td>
+                    <tr  >
+                        <td>{{ plo.number}}</td>
+                        <td>{{ plo.title}}</td>
+                        <td>{{plo.dateDeadline}}</td>
+                        <td>{{plo.description}}</td>
+                        <td>{{plo.startDate}}</td>
+                        <td>{{ plo.state}}</td>
                     </tr>
                 </table>
 
 
             </div>
 
-        </div>
-        <div>
-            <footer>    
-
-                <p>@PaloIT !</p>
-                <p>le 24 mai à 23h12</p>
-
-            </footer>
-        </div>
-    </body>
-
-</Html>
+        </div>     

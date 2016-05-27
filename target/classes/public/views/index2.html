@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-        <script src = "/script/js/angular-cookies.js"></script>
-        <script src= "/script/js/angular-route.js"></script> 
-        <script src= "/script/js/mainApp.js"></script>
-        <script src= "/script/js/app/controllers/Data.js"></script>
-        <link rel="stylesheet" href="style.css" type="text/css"/>
-        <script type="text/javascript">
-
-        </script>
-
-    </head>
-    <body>
-
-
-        <div class="for"> <h2>Todo List</h2> </div>
-
-        <div class="for">
-            <a href="http://localhost:8080/validate.html"><button class="pure-button success"> Validate Todo</button> </a>
-            <a href="http://localhost:8080/delete.html"><button class="pure-button error">Delete Todo</button> </a>
-            <a href="http://localhost:8080/searchTodo.html"><button class="pure-button warning">Search Todo</button></a>
-            <a href="http://localhost:8080/sortTodo.html"><button class="pure-button warning">Sort Todo</button></a>
-            <a href="http://localhost:8080/listTodo.html"><button class="pure-button warning"> Todo list</button></a>
-            <a href="http://localhost:8080/index2.html"><button class="pure-button secondary">Add Todo</button></a>
-
-        </div>
-
-        <div  class="for"  ng-app = "mainApp" ng-controller = "dataController" >
+        <div  class="for"  ng-app = "routeAppControllers" ng-controller = "contactadd" >
 
             <form class="pure-form pure-form-aligned"  ng-submit="submitForm()">
                 <fieldset>
@@ -74,13 +41,4 @@
             </form>
         </div>
 
-        <div> 
-            <footer>
-
-                <p>@PaloIT !</p>
-                <p>le 24 mai à 23h12</p>
-
-            </footer>
-        </div>
-    </body>
-</html>
+     

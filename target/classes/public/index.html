@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html   lang ="fr" ng-app="routeApp">
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -9,70 +9,33 @@
         <script src = "/script/js/angular-cookies.js"></script>
         <script src= "/script/js/angular-route.js"></script> 
         <script src= "/script/js/mainApp.js"></script>
+         <script src= "/script/js/script.js"></script>
         <script src= "/script/js/app/controllers/Data.js"></script>
-        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <link rel="stylesheet" href="views/style.css" type="text/css"/>
         <script type="text/javascript">
 
         </script>
 
     </head>
     <body>
-
+        
 
         <div class="for"> <h2>Todo List</h2> </div>
 
         <div class="for">
-            <a href="http://localhost:8080/validate.html"><button class="pure-button success"> Validate Todo</button> </a>
-            <a href="http://localhost:8080/delete.html"><button class="pure-button error">Delete Todo</button> </a>
-            <a href="http://localhost:8080/searchTodo.html"><button class="pure-button warning">Search Todo</button></a>
-            <a href="http://localhost:8080/sortTodo.html"><button class="pure-button warning">Sort Todo</button></a>
-            <a href="http://localhost:8080/listTodo.html"><button class="pure-button warning"> Todo list</button></a>
-            <a href="http://localhost:8080/index2.html"><button class="pure-button secondary">Add Todo</button></a>
+            <a href="#/validate"><button class="pure-button success"> Validate Todo</button> </a>
+            <a href="#/delete"><button class="pure-button error">Delete Todo</button> </a>
+            <a href="#/search"><button class="pure-button warning">Search Todo</button></a>
+            <a href="#/sort"><button class="pure-button warning">Sort Todo</button></a>
+            <a href="#/list"><button class="pure-button warning"> Todo list</button></a>
+            <a href="#/add"><button class="pure-button secondary">Add Todo</button></a>
 
         </div>
 
-        <div  class="for"  ng-app = "mainApp" ng-controller = "dataController" >
-
-            <form class="pure-form pure-form-aligned"  ng-submit="submitForm()">
-                <fieldset>
-                    <div class="pure-control-group">
-                        <label for="number">Number</label>
-                        <input id="number"  type="text" placeholder="Number"  ng-model="plop.number">
-                    </div>
-
-                    <div class="pure-control-group">
-                        <label for="title">Title</label>
-                        <input id="title" type="text"  placeholder="Title"   ng-model = "plop.title" >
-                    </div>
-
-                    <div class="pure-control-group">
-                        <label for="DeadlineDate">Deadline Date</label>
-                        <input id="DeadlineDate" type="text"  placeholder="DeadlineDate" ng-model="plop.dateDeadline" >
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="Description">Description</label>
-                        <input id="Description" type="text"  placeholder="Description"  ng-model="plop.description">
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="startDate">Start Date</label>
-                        <input id="startDate" type="text"  placeholder="startDate" ng-model="plop.startDate">
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="state">State</label>
-                        <input id="state" type="text" disabled="disabled"     ng-model="plop.state" >
-                    </div>
-
-
-                    <div class="pure-controls">
-                        <label for="cb" class="pure-checkbox">
-                            <input id="cb" type="checkbox"> I've read the terms and conditions
-                        </label>
-
-                        <button type="submit"  class="pure-button pure-button-primary">Submit</button>
-                    </div>
-                </fieldset>
-            </form>
-        </div>
+         <div ng-view> 
+        </div> 
+        
+        
 
         <div> 
             <footer>

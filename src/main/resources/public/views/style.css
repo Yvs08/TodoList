@@ -2,20 +2,20 @@ nav ul
 {
     list-style-type: none;
     display: flex;
-     
+
 }
 
 h2,
 label {
     color: #34495e;
-    
+
 }
 
 nav a:hover 
 {
     color: #760001;
     border-bottom: 3px solid #760001;
-     
+
 }
 input 
 {
@@ -26,14 +26,14 @@ nav ul
 {
     list-style-type: none;
     display: flex;
-     
+
 }
 #formulaire
 {
     border-color: blue;
     margin: 0 auto; 
     width: 900px;
-    
+
 }
 
 nav li
@@ -86,7 +86,24 @@ section h1, footer h1, nav a
 }
 .for {
     width: 900px;
-    
+
     margin: 1em auto auto;
-   
+
 }
+
+table, th , td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+
+

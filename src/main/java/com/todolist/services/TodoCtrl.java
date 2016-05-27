@@ -90,7 +90,7 @@ public class TodoCtrl {
 
         String state = todo.getState();
 
-        return Optional.ofNullable(todoRepository.findByState(state))
+        return Optional.ofNullable(state)
                 .map(e -> {
                     return todoRepository
                             .findAll()
