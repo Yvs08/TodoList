@@ -1,30 +1,30 @@
            
-        <div ng-app = " routeAppControllers" ng-controller = "contactad2" id="formulaire">
-        
-             <div class="for" >
-            
-                <table>        
-                    
-            <tr>
-               <th>Number</th>
-               <th>Title</th>
-               <th>Deadline Date</th>
-               <th>Description</th>
-               <th>Start Date</th>
-               <th>State </th>
-               
-            </tr>
-         
-            <tr ng-repeat = "plop in plopes">
-               <td>{{ plop.number }}</td>
-               <td>{{ plop.title }}</td>
-               <td>{{plop.dateDeadline}}</td>
-               <td>{{plop.description}}</td>
-               <td>{{plop.startDate}}</td>
-               <td>{{ plop.state }}</td>
-            </tr>
-         </table>
+<div ng-app = " routeAppControllers" ng-controller = "contactad2" id="formulaire">
 
-            
-            </div>
-        </div>
+    <div class="for" >
+        <h1>   {{ message}} </h1>
+        <table>        
+
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Deadline Date</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>State </th>
+
+            </tr>
+
+            <tr ng-repeat = "plop in plopes">
+                <td>{{ plop.number}}</td>
+                <td>{{ plop.title}}</td>
+                <td>{{plop.dateDeadline}}</td>
+                <td>{{plop.description}}</td>
+                <td>{{plop.startDate}}</td>
+                <td>{{ plop.state}}</td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>

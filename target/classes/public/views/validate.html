@@ -1,5 +1,5 @@
 <div ng-app = "routeAppControllers" ng-controller = "contactCtrl" class="for">
-    
+
     <form class="pure-form pure-form-aligned"  ng-submit="submitFormse()" >
         <fieldset>
             <div class="pure-control-group">
@@ -15,4 +15,33 @@
             </div>
         </fieldset>
     </form>
+    
+     <div class="for" >
+        <h1>   {{ message}} </h1>
+        <table>        
+
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Deadline Date</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>State </th>
+
+            </tr>
+
+            <tr >
+                <td> {{validate.number}}</td>
+                <td>{{validate.title}}</td>
+                <td>{{validate.dateDeadline}}</td>
+                <td>{{validate.description}}</td>
+                <td>{{validate.startDate}}</td>
+                <td>{{validate.state}}</td>
+            </tr>
+        </table>
+
+
+    </div>
+    
+    
 </div>

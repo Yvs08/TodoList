@@ -13,12 +13,10 @@ public class Todo {
     private String number;
     private String title;
 
-    
     private String startDate;
 
     private String description;
 
-   
     private String dateDeadline;
 
     private String state;
@@ -33,13 +31,13 @@ public class Todo {
     }
 
     public Todo() {
-       
+
     }
 
     public Todo(String number, String title, String description) {
-         this.number = number;
-         this.title = title;
-         this.description = description;
+        this.number = number;
+        this.title = title;
+        this.description = description;
     }
 
     public String getNumber() {
@@ -94,7 +92,5 @@ public class Todo {
     public String toString() {
         return "Todo{" + "id=" + id + ", number=" + number + ", title=" + title + ", startDate=" + startDate + ", description=" + description + ", dateDeadline=" + dateDeadline + ", state=" + state + '}';
     }
-    
-    
-    
+
 }

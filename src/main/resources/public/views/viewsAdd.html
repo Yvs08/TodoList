@@ -1,5 +1,5 @@
            
-<div ng-app = " routeAppControllers" ng-controller = "contactad2" id="formulaire">
+<div class="for"  ng-app = "routeAppControllers" ng-controller = "contactadd" >
 
     <div class="for" >
         <h1>   {{ message}} </h1>
@@ -15,13 +15,13 @@
 
             </tr>
 
-            <tr ng-repeat = "plop in plopes">
-                <td>{{ plop.number}}</td>
-                <td>{{ plop.title}}</td>
-                <td>{{plop.dateDeadline}}</td>
-                <td>{{plop.description}}</td>
-                <td>{{plop.startDate}}</td>
-                <td>{{ plop.state}}</td>
+            <tr >
+                <td> {{data.number}}</td>
+                <td>{{data.title}}</td>
+                <td>{{data.dateDeadline}}</td>
+                <td>{{data.description}}</td>
+                <td>{{data.startDate}}</td>
+                <td>{{ data.state}}</td>
             </tr>
         </table>
 

@@ -40,9 +40,11 @@ public class TodoCtrl {
     }
 
     @RequestMapping(value = "/addtodobyforms", method = RequestMethod.POST)
-    public void addTodoByForms(@RequestBody Todo t) {
+    public Todo addTodoByForms(@RequestBody Todo t) {
 
-        todoRepository.save(t);
+          todoRepository.save(t);
+          
+          return t ;
 
     }
 

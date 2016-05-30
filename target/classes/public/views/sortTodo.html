@@ -1,47 +1,46 @@
 
-        <div ng-app = "routeAppControllers" ng-controller = "contactad1" class="for">
+<div ng-app = "routeAppControllers" ng-controller = "contactad1" class="for">
 
 
-            <form class="pure-form pure-form-aligned"  ng-submit="submitFormular4()" >
-                <fieldset>
-                    <div class="pure-control-group">
-                        <label for="state">State</label>
-                        <input id="state"   required  type="text" placeholder="state" ng-model="plop.state">
-                    </div>
-
-                    <div class="pure-controls">
-                        <label for="cb" class="pure-checkbox">
-                            <input id="cb" type="checkbox"> I've read the terms and conditions
-                        </label>
-
-                        <button type="submit" class="pure-button pure-button-primary">Submit</button>
-                    </div>
-                </fieldset>
-            </form>
-            <div  class="for"> 
-
-                <table>
-                    <tr>
-                        <th>Number</th>
-                        <th>Title</th>
-                        <th>Deadline Date</th>
-                        <th>Description</th>
-                        <th>Start Date</th>
-                        <th>State</th>
-
-                    </tr>
-
-                    <tr ng-repeat = "plop in sort">
-                        <td>{{ plop.number}}</td>
-                        <td>{{ plop.title}}</td>
-                        <td>{{plop.dateDeadline}}</td>
-                        <td>{{plop.description}}</td>
-                        <td>{{plop.startDate}}</td>
-                        <td>{{ plop.state}}</td>
-                    </tr>
-                </table>
-
-
+    <form class="pure-form pure-form-aligned"  ng-submit="submitFormular4()" >
+        <fieldset>
+            <div class="pure-control-group">
+                <label for="state">State</label>
+                <input id="state"   required  type="text" placeholder="state" ng-model="plop.state">
             </div>
-        </div>
-      
+
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox"> I've read the terms and conditions
+                </label>
+
+                <button type="submit" class="pure-button pure-button-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+    <div  class="for"> 
+
+        <table>
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Deadline Date</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>State</th>
+
+            </tr>
+
+            <tr ng-repeat = "plop in sort">
+                <td>{{ plop.number}}</td>
+                <td>{{ plop.title}}</td>
+                <td>{{plop.dateDeadline}}</td>
+                <td>{{plop.description}}</td>
+                <td>{{plop.startDate}}</td>
+                <td>{{ plop.state}}</td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
