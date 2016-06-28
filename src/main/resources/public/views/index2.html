@@ -62,6 +62,13 @@
                 <td>{{ data.state}}</td>
             </tr>
         </table>
+        
+         <div ng-app = "mainApp" ng-controller = "CalcController">
+         <p>Enter a number: <input type = "number" ng-model = "number" /></p>
+         <button ng-click = "square()">X<sup>2</sup></button>
+         <p>Result: {{result}}</p>
+      </div>
+        
 
 
     </div>

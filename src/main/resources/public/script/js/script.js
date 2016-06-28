@@ -10,7 +10,7 @@ var routeApp = angular.module('routeApp', [
     'ngRoute',
     'routeAppControllers'
 ]);
-
+// mainApp ng-app
 var routeAppControllers = angular.module('routeAppControllers', []);
 
 
