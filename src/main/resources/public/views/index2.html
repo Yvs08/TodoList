@@ -1,45 +1,46 @@
-        <div  class="for"  ng-app = "routeAppControllers" ng-controller = "contactadd" >
+<div  class="for"  ng-app = "routeAppControllers" ng-controller = "contactadd" >
 
-            <form class="pure-form pure-form-aligned"  ng-submit="submitForm()">
-                <fieldset>
-                    <div class="pure-control-group">
-                        <label for="number">Number</label>
-                        <input id="number"  type="text" placeholder="Number"  ng-model="plop.number">
-                    </div>
+    <form class="pure-form pure-form-aligned"  ng-submit="submitForm()">
+        <fieldset>
+              
+            <div class="pure-control-group">
+                <label for="number">Number</label>
+                <input id="number"  type="text" placeholder="Number"  ng-model="plop.number">
+            </div>
 
-                    <div class="pure-control-group">
-                        <label for="title">Title</label>
-                        <input id="title" type="text"  placeholder="Title"   ng-model = "plop.title" >
-                    </div>
+            <div class="pure-control-group">
+                <label for="title">Title</label>
+                <input id="title" type="text"  placeholder="Title"   ng-model = "plop.title" >
+            </div>
 
-                    <div class="pure-control-group">
-                        <label for="DeadlineDate">Deadline Date</label>
-                        <input id="DeadlineDate" type="text"  placeholder="DeadlineDate" ng-model="plop.dateDeadline" >
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="Description">Description</label>
-                        <input id="Description" type="text"  placeholder="Description"  ng-model="plop.description">
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="startDate">Start Date</label>
-                        <input id="startDate" type="text"  placeholder="startDate" ng-model="plop.startDate">
-                    </div>
-                    <div class="pure-control-group">
-                        <label for="state">State</label>
-                        <input id="state" type="text" disabled="disabled"     ng-model="plop.state" >
-                    </div>
+            <div class="pure-control-group">
+                <label for="DeadlineDate">Deadline Date</label>
+                <input id="DeadlineDate" type="text"  placeholder="DeadlineDate" ng-model="plop.dateDeadline" >
+            </div>
+            <div class="pure-control-group">
+                <label for="Description">Description</label>
+                <input id="Description" type="text"  placeholder="Description"  ng-model="plop.description">
+            </div>
+            <div class="pure-control-group">
+                <label for="startDate">Start Date</label>
+                <input id="startDate" type="text"  placeholder="startDate" ng-model="plop.startDate">
+            </div>
+            <div class="pure-control-group">
+                <label for="state">State</label>
+                <input id="state" type="text" disabled="disabled"     ng-model="plop.state" >
+            </div>
 
 
-                    <div class="pure-controls">
-                        <label for="cb" class="pure-checkbox">
-                            <input id="cb" type="checkbox"> I've read the terms and conditions
-                        </label>
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox"> I've read the terms and conditions
+                </label>
 
-                        <button type="submit"  class="pure-button pure-button-primary">Submit</button>
-                    </div>
-                </fieldset>
-            </form>
-            <div class="for" >
+                <button type="submit"  class="pure-button pure-button-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+<!--    <div class="for" >
         <h1>   {{ message}} </h1>
         <table>        
 
@@ -61,17 +62,13 @@
                 <td>{{data.startDate}}</td>
                 <td>{{ data.state}}</td>
             </tr>
-        </table>
-        
-         <div ng-app = "mainApp" ng-controller = "CalcController">
-         <p>Enter a number: <input type = "number" ng-model = "number" /></p>
-         <button ng-click = "square()">X<sup>2</sup></button>
-         <p>Result: {{result}}</p>
-      </div>
-        
+        </table>-->
+
+       
+
 
 
     </div>
-        </div>
+</div>
 
-     
+

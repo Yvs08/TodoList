@@ -10,7 +10,7 @@ var routeApp = angular.module('routeApp', [
     'ngRoute',
     'routeAppControllers'
 ]);
-
+// mainApp ng-app
 var routeAppControllers = angular.module('routeAppControllers', []);
 
 
@@ -40,6 +40,30 @@ routeAppControllers.controller('homeCtrl', ['$scope', '$http',
     }
 ]);
 
+routeAppControllers.factory('MathService', function () {
+    var factory = {};
+
+    factory.multiply = function (a, b) {
+        return a * b
+    }
+    return factory;
+});
+
+routeAppControllers.service('CalcService', function (MathService) {
+    this.square = function (a) {
+        return MathService.multiply(a, a);
+    }
+});
+
+routeAppControllers.controller('CalcController', function ($scope, CalcService) {
+    $scope.square = function () {
+        $scope.result = CalcService.square($scope.number);
+    }
+});
+
+
+
+
 // Contrôleur de la page de validation
 routeAppControllers.controller('contactCtrl', ['$scope', '$http',
     function ($scope, $http) {
@@ -64,8 +88,8 @@ routeAppControllers.controller('contactCtrl', ['$scope', '$http',
 ]);
 
 
-routeAppControllers.controller('contactadd', ['$scope', '$http',
-    function ($scope, $http) {
+routeAppControllers.controller('contactadd', ['$scope', '$http', '$window',
+    function ($scope, $http, $window) {
         $scope.plop = {
             state: 'todo'
         };
@@ -79,9 +103,9 @@ routeAppControllers.controller('contactadd', ['$scope', '$http',
             var addUrl = 'http://localhost:8080/addtodobyforms';
             $http.post(addUrl, formData)
                     .success(function (response) {
-
+                        $scope.status = 'The item was saved!';
                         $scope.data = response;
-
+                        $window.location.href = '/#/list';
 
 
                     });
@@ -130,7 +154,7 @@ routeAppControllers.controller('contactad1', ['$scope', '$http',
 routeAppControllers.controller('contactad2', ['$scope', '$http',
     function ($scope, $http) {
         var url = "http://localhost:8080/todo"
-          $scope.message = "Overviews TodoList In DataBase";
+        $scope.message = "Overviews TodoList In DataBase";
 
         $http.get(url).success(function (response) {
             $scope.plopes = response;
@@ -162,6 +186,11 @@ routeApp.config(['$routeProvider',
                     templateUrl: 'views/index2.html',
                     controller: 'contactadd'
                 })
+
+                .when('/service', {
+                    templateUrl: 'views/service.html',
+                    controller: 'CalcController'
+                })
                 .when('/search', {
                     templateUrl: 'views/searchTodo.html',
                     controller: 'contactad'
@@ -174,7 +203,7 @@ routeApp.config(['$routeProvider',
                     templateUrl: 'views/listTodo.html',
                     controller: 'contactad2'
                 })
-                
+
 
                 .otherwise({
                     redirectTo: '/add'

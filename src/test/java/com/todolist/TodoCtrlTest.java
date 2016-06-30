@@ -81,16 +81,17 @@ public class TodoCtrlTest {
 
         for (int i = 0; i < array.length(); ++i) {
             JSONObject obj = array.getJSONObject(i);
-
+            if (obj.getString("number")!= null){
             System.out.println(obj.getString("number"));
+            }
         }
     }
 
     @Test
     public void test1() throws Exception {
-        this.mockMvc.perform(get("/voir"))
+        this.mockMvc.perform(get("/see"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Salut"));
+                .andExpect(content().string("Hello"));
     }
 
     @Test
