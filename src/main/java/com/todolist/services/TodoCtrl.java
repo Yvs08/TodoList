@@ -1,6 +1,11 @@
 package com.todolist.services;
 
+import com.todolist.domain.Afaire;
+import com.todolist.domain.Auteur;
+import com.todolist.domain.Project;
 import com.todolist.domain.Todo;
+import com.todolist.repository.AfaireRepository;
+import com.todolist.repository.AuteurRepository;
 import com.todolist.repository.TodoRepository;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +28,11 @@ public class TodoCtrl {
 
     @Autowired
     private TodoRepository todoRepository;
+    @Autowired
+    private AuteurRepository auteurRepository;
+
+    @Autowired
+    private AfaireRepository afaireRepository;
 
     @RequestMapping(value = "/addtodo", method = RequestMethod.GET)
     public Todo addTodoByUrl(@RequestParam(value = "title") String title,
@@ -42,9 +52,74 @@ public class TodoCtrl {
     @RequestMapping(value = "/addtodobyforms", method = RequestMethod.POST)
     public Todo addTodoByForms(@RequestBody Todo t) {
 
-          todoRepository.save(t);
-          
-          return t ;
+        todoRepository.save(t);
+
+        return t;
+
+    }
+
+    @RequestMapping(value = "/addauteurbyforms", method = RequestMethod.POST)
+    public Auteur addAuteurByForms(@RequestBody Auteur t) {
+
+        auteurRepository.save(t);
+
+        return t;
+
+    }
+
+    @RequestMapping(value = "/addauteurbyurl", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Auteur> addAuteurByUrl() {
+
+        return auteurRepository.findAll();
+
+    }
+
+    @RequestMapping(value = "/addafairebyurl", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Afaire> addAfaireByUrl() {
+
+        return afaireRepository.findAll();
+
+    }
+
+    @RequestMapping(value = "/addaffaire", method = RequestMethod.GET)
+    public Afaire addAffaireByUrl(@RequestParam(value = "title") String title,
+            @RequestParam(value = "description") String description,
+            @RequestParam(value = "number") String number, @RequestParam String function, @RequestParam String name, @RequestParam String society, @RequestParam String departement) {
+        String startDate = "13-08-2016";
+        String dateDeadline = "13-08-2016";
+        String state = "todo";
+
+        Auteur auteur = new Auteur(function, name, society, departement);
+
+        auteurRepository.save(auteur);
+
+        Afaire tod = new Afaire(number, title, description, startDate, dateDeadline, state, auteur);
+
+        afaireRepository.save(tod);
+        return tod;
+
+    }
+    @RequestMapping(value = "/addafairebyforms", method = RequestMethod.POST)
+    public String addAfaireByForms(@RequestBody Project t) {
+        String state = "todo";
+        String function = t.getFunction();
+        String name = t.getName();
+        String society = t.getSociety();
+        String departement = t.getDepartment();
+
+        Auteur auteur = new Auteur(function, name, society, departement);
+        auteurRepository.save(auteur);
+
+        String number = t.getNumber();
+        String title = t.getTitle();
+        String description = t.getDescription();
+        String startDate = t.getStartDate();
+        String dateDeadline = t.getDateDeadline();
+        Afaire tod = new Afaire(number, title, description, startDate, dateDeadline, state, auteur);
+        afaireRepository.save(tod);
+        return name;
 
     }
 
@@ -95,10 +170,10 @@ public class TodoCtrl {
         return Optional.ofNullable(state)
                 .map(e -> {
                     return todoRepository
-                            .findAll()
-                            .stream()
-                            .filter(d -> d.getState().equals(e))
-                            .collect(Collectors.toList());
+                    .findAll()
+                    .stream()
+                    .filter(d -> d.getState().equals(e))
+                    .collect(Collectors.toList());
                 })
                 .orElseGet(() -> {
                     return todoRepository.findAll();
@@ -174,10 +249,10 @@ public class TodoCtrl {
         return state
                 .map(e -> {
                     return todoRepository
-                            .findAll()
-                            .stream()
-                            .filter(d -> d.getState().equals(e))
-                            .collect(Collectors.toList());
+                    .findAll()
+                    .stream()
+                    .filter(d -> d.getState().equals(e))
+                    .collect(Collectors.toList());
                 })
                 .orElseGet(() -> {
                     return todoRepository.findAll();
@@ -192,10 +267,10 @@ public class TodoCtrl {
         return dateDeadline
                 .map(e -> {
                     return todoRepository
-                            .findAll()
-                            .stream()
-                            .filter(d -> d.getDateDeadline().compareTo(e) > 0)
-                            .collect(Collectors.toList());
+                    .findAll()
+                    .stream()
+                    .filter(d -> d.getDateDeadline().compareTo(e) > 0)
+                    .collect(Collectors.toList());
                 })
                 .orElseGet(() -> {
                     return todoRepository.findAll();

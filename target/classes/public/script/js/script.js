@@ -116,6 +116,37 @@ routeAppControllers.controller('contactadd', ['$scope', '$http', '$window',
     }
 ]);
 
+
+routeAppControllers.controller('contactadaffaire', ['$scope', '$http', '$window',
+    function ($scope, $http, $window) {
+        $scope.plope = {
+            state: 'todo'
+        };
+
+        $scope.message = "Vous avez inserer cette Todo Dans la Base";
+
+        $scope.submitForm = function () {
+            console.log("posting data....");
+            var formData = $scope.plope;
+            console.log(formData);
+            var addUrl = 'http://localhost:8080/addafairebyforms';
+            $http.post(addUrl, formData)
+                    .success(function (response) {
+                        $scope.status = 'The item was saved!';
+                        $scope.date = response;
+                        $window.location.href = '/#/list';
+
+
+                    });
+        };
+
+
+
+    }
+]);
+
+
+
 routeAppControllers.controller('contactad', ['$scope', '$http',
     function ($scope, $http) {
         $scope.submitFormular1 = function () {
@@ -202,6 +233,10 @@ routeApp.config(['$routeProvider',
                 .when('/list', {
                     templateUrl: 'views/listTodo.html',
                     controller: 'contactad2'
+                })
+                .when('/afaire', {
+                    templateUrl: 'views/addAfaire.html',
+                    controller: 'contactadaffaire'
                 })
 
 

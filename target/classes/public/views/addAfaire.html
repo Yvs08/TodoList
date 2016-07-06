@@ -1,0 +1,90 @@
+<div  class="for"  ng-app = "routeAppControllers" ng-controller = "contactadaffaire" >
+
+    <form class="pure-form pure-form-aligned"  ng-submit="submitForm()">
+        <fieldset>
+              
+            <div class="pure-control-group">
+                <label for="number">Number</label>
+                <input id="number"  type="text" placeholder="Number"  ng-model="plope.number">
+            </div>
+
+            <div class="pure-control-group">
+                <label for="title">Title</label>
+                <input id="title" type="text"  placeholder="Title"   ng-model = "plope.title" >
+            </div>
+
+            <div class="pure-control-group">
+                <label for="DeadlineDate">Deadline Date</label>
+                <input id="DeadlineDate" type="text"  placeholder="DeadlineDate" ng-model="plope.dateDeadline" >
+            </div>
+            <div class="pure-control-group">
+                <label for="Description">Description</label>
+                <input id="Description" type="text"  placeholder="Description"  ng-model="plope.description">
+            </div>
+            <div class="pure-control-group">
+                <label for="startDate">Start Date</label>
+                <input id="startDate" type="text"  placeholder="startDate" ng-model="plope.startDate">
+            </div>
+            
+             <div class="pure-control-group">
+                <label for="state">State</label>
+                <input id="state" type="text" disabled="disabled"     ng-model="plope.state" >
+            </div>
+            
+            <div class="pure-control-group">
+                <label for="name">Name</label>
+                <input id="name" type="text"  placeholder="name"     ng-model="plope.name" >
+            </div>
+            <div class="pure-control-group">
+                <label for="function">Function</label>
+                <input id="function" type="text"  placeholder="function"     ng-model="plope.function" >
+            </div>
+            <div class="pure-control-group">
+                <label for="department">Departement</label>
+                <input id="department" type="text"  placeholder="department"    ng-model="plope.department" >
+            </div>
+            <div class="pure-control-group">
+                <label for="society">Society</label>
+                <input id="society" type="text"   placeholder="society"      ng-model="plope.society" >
+            </div>
+
+
+            <div class="pure-controls">
+                <label for="cb" class="pure-checkbox">
+                    <input id="cb" type="checkbox"> I've read the terms and conditions
+                </label>
+
+                <button type="submit"  class="pure-button pure-button-primary">Submit</button>
+            </div>
+        </fieldset>
+    </form>
+<!--    <div class="for" >
+        <h1>   {{ message}} </h1>
+        <table>        
+
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Deadline Date</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>State </th>
+
+            </tr>
+
+            <tr >
+                <td> {{data.number}}</td>
+                <td>{{data.title}}</td>
+                <td>{{data.dateDeadline}}</td>
+                <td>{{data.description}}</td>
+                <td>{{data.startDate}}</td>
+                <td>{{ data.state}}</td>
+            </tr>
+        </table>-->
+
+       
+
+
+
+    </div>
+
