@@ -7,7 +7,6 @@ import com.todolist.domain.Todo;
 import com.todolist.repository.AfaireRepository;
 import com.todolist.repository.AuteurRepository;
 import com.todolist.repository.TodoRepository;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -28,6 +27,7 @@ public class TodoCtrl {
 
     @Autowired
     private TodoRepository todoRepository;
+
     @Autowired
     private AuteurRepository auteurRepository;
 
@@ -77,23 +77,37 @@ public class TodoCtrl {
 
     @RequestMapping(value = "/addafairebyurl", method = RequestMethod.GET)
     @ResponseBody
-    public List<Afaire> addAfaireByUrl() {
+    public List<Auteur> addAfaireByUrl() {
 
-        return afaireRepository.findAll();
+//        return afaireRepository.findAll();
+        return auteurRepository.findByName("yves");
 
     }
 
     @RequestMapping(value = "/addaffaire", method = RequestMethod.GET)
     public Afaire addAffaireByUrl(@RequestParam(value = "title") String title,
             @RequestParam(value = "description") String description,
-            @RequestParam(value = "number") String number, @RequestParam String function, @RequestParam String name, @RequestParam String society, @RequestParam String departement) {
+            @RequestParam(value = "number") String number, @RequestParam String function, @RequestParam String name, @RequestParam String society, @RequestParam String department) {
         String startDate = "13-08-2016";
         String dateDeadline = "13-08-2016";
         String state = "todo";
 
-        Auteur auteur = new Auteur(function, name, society, departement);
+        Auteur auteur = new Auteur(function, name, society, department);
+        List <Auteur> yves = auteurRepository.findByName(function) ; 
+       
+        if (yves.isEmpty()){ 
+             auteurRepository.save(auteur);
+        }
 
-        auteurRepository.save(auteur);
+//        List <Auteur> yves = auteurRepository.findByName(name) ; 
+//        
+//         System.out.println(yves);
+//        Optional.of(auteurRepository.findByName(name))
+//                .orElseGet(() -> {
+//                    auteurRepository.save(auteur);
+//                    return auteurRepository.findAll();
+//
+//                });
 
         Afaire tod = new Afaire(number, title, description, startDate, dateDeadline, state, auteur);
 
@@ -101,6 +115,7 @@ public class TodoCtrl {
         return tod;
 
     }
+
     @RequestMapping(value = "/addafairebyforms", method = RequestMethod.POST)
     public String addAfaireByForms(@RequestBody Project t) {
         String state = "todo";
