@@ -16,12 +16,12 @@
             </tr>
 
             <tr ng-repeat = "plop in plopes">
-                <td>{{ plop.number}}</td>
-                <td>{{ plop.title}}</td>
-                <td>{{plop.dateDeadline}}</td>
-                <td>{{plop.description}}</td>
-                <td>{{plop.startDate}}</td>
-                <td>{{ plop.state}}</td>
+                <td> <input data-ng-model="plop.number" type ="text" ></td>
+                <td> <input data-ng-model=" plop.title" type ="text"></td>
+                <td> <input data-ng-model="plop.dateDeadline" type="text"> </td>
+                <td> <input data-ng-model ="plop.description" type = "text"> </td>
+                <td> <input data-ng-model="plop.startDate" type ="text"> </td>
+                <td id= "friend_{{$index}}"> <input data-ng-model ="plop.state" type ="text"> </td>
             </tr>
         </table>
 

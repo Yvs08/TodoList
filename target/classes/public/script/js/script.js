@@ -44,8 +44,8 @@ routeAppControllers.factory('MathService', function () {
     var factory = {};
 
     factory.multiply = function (a, b) {
-        return a * b
-    }
+        return a * b; 
+    };
     return factory;
 });
 
@@ -191,7 +191,7 @@ routeAppControllers.controller('contactad2', ['$scope', '$http',
             $scope.plopes = response;
         });
 
-//      $scope.plopes = [ { number: 1, title: "yves", dateDeadline:"12" , description:" 11", startDate:"d",state:"1"}]; 
+ 
 
 
     }
