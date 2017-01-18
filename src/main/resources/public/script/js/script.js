@@ -19,7 +19,8 @@ routeAppControllers.controller('homeCtrl', ['$scope', '$http',
     function ($scope, $http) {
         $scope.plop = {};
 
-        $scope.plop = {
+        $scope.plop
+                = {
             state: 'todo'
 
         };

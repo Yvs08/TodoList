@@ -19,7 +19,8 @@ routeAppControllers.controller('homeCtrl', ['$scope', '$http',
     function ($scope, $http) {
         $scope.plop = {};
 
-        $scope.plop = {
+        $scope.plop
+                = {
             state: 'todo'
 
         };
@@ -190,8 +191,6 @@ routeAppControllers.controller('contactad2', ['$scope', '$http',
         $http.get(url).success(function (response) {
             $scope.plopes = response;
         });
-
- 
 
 
     }
